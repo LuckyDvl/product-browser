@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Premium Product Browser | Keyset Pagination</title>
+  <!-- Google Fonts: Inter and Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <div class="glass-bg"></div>
+  
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="header-logo">
+        <span class="logo-icon">✦</span>
+        <h1>Code Vector Internship</h1>
+      </div>
+      <div class="header-status">
+        <span class="status-indicator online" id="connection-status"></span>
+        <span class="status-text">Database Connected</span>
+      </div>
+    </header>
+
+    <div class="main-layout">
+      <!-- Sidebar / Controls -->
+      <aside class="controls-sidebar">
+        <!-- Categories -->
+        <div class="sidebar-section">
+          <h2>Filter by Category</h2>
+          <div class="category-list" id="category-filters">
+            <button class="category-btn active" data-category="">All Categories</button>
+            <div class="skeleton-btn-container" id="category-skeletons">
+              <div class="skeleton skeleton-btn"></div>
+              <div class="skeleton skeleton-btn"></div>
+              <div class="skeleton skeleton-btn"></div>
+              <div class="skeleton skeleton-btn"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Simulation Tool -->
+        <div class="sidebar-section simulation-box">
+          <h3>Simulate Live Data Updates</h3>
+          <p>Insert 50 products with the current timestamp. You will notice that pagination is unaffected by this insertion (no duplicate products, no missed items).</p>
+          <div class="sim-controls">
+            <select id="sim-category-select">
+              <option value="Electronics">Electronics</option>
+              <option value="Clothing">Clothing</option>
+              <option value="Home & Kitchen">Home & Kitchen</option>
+              <option value="Books">Books</option>
+              <option value="Sports">Sports</option>
+            </select>
+            <button id="btn-simulate" class="btn-primary">Add 50 New Products</button>
+          </div>
+          <div id="sim-toast" class="toast-message"></div>
+        </div>
+
+        <!-- Tech Info -->
+        <div class="sidebar-section info-box">
+          <h3>Keyset Cursors (Active)</h3>
+          <div class="cursor-debugger">
+            <div><strong>Prev Cursor:</strong> <code id="debug-prev-cursor">null</code></div>
+            <div><strong>Next Cursor:</strong> <code id="debug-next-cursor">null</code></div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Products Grid -->
+      <main class="products-area">
+        <div class="products-header">
+          <div class="results-count" id="results-meta">Loading products...</div>
+          <div class="page-size-selector">
+            <label for="limit-select">Page Size:</label>
+            <select id="limit-select">
+              <option value="12">12 per page</option>
+              <option value="24" selected>24 per page</option>
+              <option value="48">48 per page</option>
+              <option value="96">96 per page</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Grid Container -->
+        <div class="products-grid" id="products-grid">
+          <!-- Skeletons before load -->
+          <div class="product-card skeleton-card">
+            <div class="skeleton skeleton-tag"></div>
+            <div class="skeleton skeleton-title"></div>
+            <div class="skeleton skeleton-price"></div>
+            <div class="skeleton skeleton-date"></div>
+          </div>
+          <!-- Repeats for skeleton layout -->
+          <div class="product-card skeleton-card"></div>
+          <div class="product-card skeleton-card"></div>
+          <div class="product-card skeleton-card"></div>
+          <div class="product-card skeleton-card"></div>
+          <div class="product-card skeleton-card"></div>
+        </div>
+
+        <!-- Pagination Controls -->
+        <div class="pagination-footer">
+          <button id="btn-prev" class="btn-secondary" disabled>← Previous Page</button>
+          <span class="page-indicator" id="page-indicator">Page 1</span>
+          <button id="btn-next" class="btn-secondary" disabled>Next Page →</button>
+        </div>
+      </main>
+    </div>
+  </div>
+  
+  <script src="app.js" type="module"></script>
+</body>
+</html>

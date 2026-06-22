@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: product-browser
+    runtime: node
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: DATABASE_URL
+        sync: false # Render will prompt the user to paste their connection string
+        placeholder: "postgresql://postgres:password@db.supabase.co:5432/postgres"
+      - key: NODE_ENV
+        value: production
